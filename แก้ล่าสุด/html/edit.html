@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เล่าเรื่อง เรื่องเหล้า</title>
+    <link rel="stylesheet" href="../css/edit.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="../img/icon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../img/icon.png">
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="./main.html">
+                <div class="logo"></div>
+            </a>
+
+            <div class="menus-1">
+                <div>
+                    <ul>
+                        <li><a href="./main.html">หน้าแรก</a></li>
+                        <li><a href="./like.html">เรื่องที่ชอบ</a></li>
+                        <li><a href="./read.html">อ่านแล้ว</a></li>
+                        <li><a href="./mystory.html">เรื่องเล่าของฉัน</a></li>
+                        <li><a href="./contant.html">เล่าเรื่อง</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li id="profile"><a href="#" class="active">โปรไฟล์</a>
+                            <!-- dropdown-profile -->
+                            <div id="dropdown-profile">
+                                <div id="dropdown">
+                                    <ul>
+                                        <li><a href="./edit.html">แก้ไขข้อมูล</a></li>
+                                        <li><a href="#" id="logout">ออกจากระบบ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="menus-2">
+                <span id="hamburger"><i class="fas fa-bars"></i></span>
+                <div id="dropdown-menus">
+                    <ul>
+                        <li><a href="./main.html">หน้าแรก</a></li>
+                        <li><a href="./like.html">เรื่องที่ชอบ</a></li>
+                        <li><a href="./read.html">อ่านแล้ว</a></li>
+                        <li><a href="./mystory.html">เรื่องเล่าของฉัน</a></li>
+                        <li><a href="./contant.html">เล่าเรื่อง</a></li>
+                        <li><a href="./edit.html" class="active">แก้ไขข้อมูล</a></li>
+                        <li><a href="#" id="logout2">ออกจากระบบ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+
+    </header>
+    <div class="contianer">
+        <h1>โปรไฟล์</h1>
+        <div class="contian">
+            <div class="box">
+                <h2>ข้อมูลส่วนตัว</h2>
+                <form id="form1" action="#" method="post">
+                    <p>ชื่อผู้ใช้</p>
+                    <input type="text" name="name" id="name" disabled>
+                    <p>นามปากกา</p>
+                    <input type="text" name="aka" id="aka">
+                    <button type="submit">ยืนยัน</button>
+                </form>
+            </div>
+            <div class="box">
+                <h2>เปลี่ยนรหัสผ่าน</h2>
+                <form id="form2" action="#" method="post">
+                    <p>รหัสผ่านปัจจุบัน *</p>
+                    <input type="password" name="current_password" id="cr_pwd">
+                    <p>รหัสผ่านใหม่ *</p>
+                    <input type="password" name="new_password" id="nw_pwd">
+                    <p>ยืนยันรหัสผ่านใหม่ *</p>
+                    <input type="password" name="confirm_password" id="cf_pwd">
+                    <button type="submit">ยืนยัน</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- js -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-database.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+    <script src="../js/configfirebase.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/nav.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+
+            $('#name').val(sessionStorage.getItem("username"));
+            $('#aka').val(sessionStorage.getItem("penname"));
+
+            $('#form1').submit(function () {
+                let penname = $('#aka').val();
+                if (penname != sessionStorage.getItem("penname")) {
+                    let firebaseRef = firebase.database().ref('user/' + sessionStorage.getItem("username") + '/penname');
+                    firebaseRef.set(penname).then(function () {
+                        alert('การเปลี่ยนนามปากกาสำเร็จเรียบร้อย')
+                        sessionStorage.setItem("penname", penname);
+                        $('#aka').val(sessionStorage.getItem("penname"));
+                    }).catch(function () {
+                        alert('การเปลี่ยนนามปากกาไม่สำเร็จ กรุณาลองใหม่อีกครั้ง')
+                    })
+                }
+                return false;
+            })
+
+            $('#form2').submit(function () {
+                let oldpass = $('#cr_pwd').val();
+                let newpass = $('#nw_pwd').val();
+                let cfpass = $('#cf_pwd').val();
+                let n = true;
+                if (oldpass != '' && newpass != '' && cfpass != '') {
+                    if (newpass == cfpass) {
+                        if (newpass.length >= 6) {
+                            oldpass = atob(oldpass);
+                            firebase
+                                .database()
+                                .ref('user/' + sessionStorage.getItem("username"))
+                                .on('value', (snapshot) => {
+                                    const data = snapshot.val();
+                                    if (n) {
+                                        n = false;
+                                        if (oldpass == data.password) {
+                                            newpass = atob(newpass);
+                                            let firebaseRef = firebase.database().ref('user/' + sessionStorage.getItem("username") + '/password');
+                                            firebaseRef.set(newpass).then(function () {
+                                                alert('การเปลี่ยนรหัสผ่านสำเร็จเรียบร้อย');
+
+                                            }).catch(function () {
+                                                alert('การเปลี่ยนรหัสผ่านไม่สำเร็จ กรุณาลองใหม่อีกครั้ง')
+
+                                            })
+                                        } else {
+                                            alert('รหัสผ่านไม่ถูกต้อง')
+                                        }
+                                    }
+                                    $('#cr_pwd').val('');
+                                    $('#nw_pwd').val('');
+                                    $('#cf_pwd').val('');
+                                });
+                        } else {
+                            alert('รหัสผ่านต้องมีความยาวอย่างน้อย 6 อักษร')
+                        }
+
+                    } else {
+                        alert('ข้อมูลไม่ถูกต้อง กรุณาตรวจสอบใหม่อีกครั้ง');
+                    }
+
+                }
+                return false;
+            })
+
+        })
+
+    </script>
+    <!-- //// -->
+
+</body>
+
+</html>

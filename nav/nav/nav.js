@@ -1,0 +1,11 @@
+$(document).ready(function(){
+    $('#profile').mouseenter(function(){
+        $('#dropdown-profile').slideDown();
+    });
+    $('#dropdown-profile').mouseleave(function(){
+        $('#dropdown-profile').slideUp();
+    });
+    $('#hamburger').click(function(){
+        $('#dropdown-menus').slideToggle();
+    });
+  });

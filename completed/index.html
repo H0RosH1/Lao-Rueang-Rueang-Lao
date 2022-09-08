@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>เล่าเรื่อง เรื่องเหล้า</title>
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="./img/icon.png">
+</head>
+
+<body>
+    <header>
+        <div class="logo"></div>
+        <div class="login">
+            <a href="./index.html" class="focuspags">เข้าสู่ระบบ</a>
+            <span>|</span>
+            <a href="./html/register.html">ลงทะเบียน</a>
+        </div>
+    </header>
+    <div class="contianer">
+        <div class="title">
+            <div class="in_title">
+                เล่าเรื่อง <br>
+                <span>เรื่องเหล้า</span>
+            </div>
+            <div class="in_titleM">
+                เล่าเรื่อง
+                <span>เรื่องเหล้า</span>
+            </div>
+        </div>
+        <div class="sign_in">
+            <form id="form" action="#" method="post">
+                <h1>เข้าสู่ระบบ</h1>
+                <p>ชื่อผู้ใช้</p>
+                <input type="text" name="username" id="username">
+                <p>รหัสผ่าน</p>
+                <input type="password" name="pwd" id="pwd">
+                <a href="#" id="forget">ลืมรหัสผ่าน?</a>
+                <button type="submit">เริ่มเล่า</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- js -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-database.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+    <script src="./js/configfirebase.js"></script>
+    <script src="./js/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#form').submit(function () {
+                let username = $('#username').val();
+                let pwd = $('#pwd').val();
+                if (username != '' && pwd != '') {
+                    pwd = atob(pwd)
+                    firebase
+                        .database()
+                        .ref('user/' + username)
+                        .on('value', (snapshot) => {
+                            const data = snapshot.val();
+
+                            if (data != null) {
+                                if (pwd == data.password) {
+                                    sessionStorage.setItem("username", username);
+                                    let penname = data.penname;
+                                    if (penname != null) {
+                                        sessionStorage.setItem("penname", penname);
+                                    } else {
+                                        sessionStorage.setItem("penname", '');
+                                    }
+                                    window.location.assign('./html/main.html');
+                                } else {
+                                    alert('รหัสผ่านไม่ถูกต้อง')
+                                    $('#pwd').val('');
+                                    return false;
+
+                                }
+                            } else {
+                                alert('ไม่พบชื่อผู้ใช้ดังกล่าว')
+                            }
+                        });
+                } else {
+                    alert('ข้อมูลไม่ถูกต้อง กรุณาตรวจสอบใหม่อีกครั้ง');
+                }
+                return false;
+            });
+            $('#forget').click(function () {
+                alert('ขออภัยด้วยครับ กรุณาสมัครใหม่เถอะครับ');
+                return false;
+            })
+        })
+
+    </script>
+    <!-- //// -->
+</body>
+
+</html>

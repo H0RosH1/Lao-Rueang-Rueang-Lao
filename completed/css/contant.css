@@ -1,0 +1,362 @@
+@font-face {
+    font-family: "thaisans";
+    src: url('./font/thaisanslite_r1.ttf');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "thaisans";
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+  }
+
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #00000015;
+    border-radius: 10px;
+    margin: 82px 0 50px;
+}
+  /* Handle */
+body::-webkit-scrollbar-thumb {
+    background: rgb(53, 53, 53); 
+    border-radius: 10px;
+    margin: 10px;
+  }
+  
+  /* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+    background: #202020; 
+}
+
+.contianer{
+    height: 90vh ;
+}
+
+.contianer h1 {
+    font-size: 96px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+.contian{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1.2em 6em;
+    width: 100%;
+    
+}
+.logo {
+  background-image: url('../img/icon.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.box{
+  background-color: rgb(224, 224, 224);
+  box-shadow: 3px 3px 10px 0px grey;
+  width: 70%;
+  margin-bottom: 50px;
+  padding: 1.2em 3.6em;
+  border-radius: 10px;
+  height: auto;
+}
+.box2 {
+  display: flex !important;
+  justify-content: space-between;
+}
+
+.box h2 {
+  font-size: 54px;
+  font-weight: 500;
+  color: rgb(255, 19, 117);
+}
+
+.box p{
+  font-size: 32px;
+}
+
+.box form{
+  padding: 1.2em 4em;
+}
+
+.box input, textarea{
+  font-size: 32px;
+  font-family: "thaisans";
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  outline: none;
+  padding: 5px;
+  margin: 20px 0;
+  border-radius: 5px;
+  border: 2px solid rgb(177, 177, 177);
+}
+
+.box input:focus,textarea:focus{
+  border: 2px solid rgb(97, 97, 97);
+}
+
+.box button {
+  float: right;
+  font-size: 32px;
+  display: block;
+  margin: 20px 0;
+  background-color: rgb(255, 28, 122);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  padding: 0.2em;
+  width: 200px;
+  cursor: pointer;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;    
+}
+
+.box button:hover {
+  background-color: rgb(236, 12, 105);
+  color: rgb(199, 199, 199);
+  transition: 0.2s;
+}
+
+.box button:active {
+  background-color: rgb(206, 10, 92);
+  color: rgb(199, 199, 199);
+  transition: 0.2s;
+}
+
+#checkbtn{
+    display: none;
+}
+
+.titleF{
+  font-size: 48px;
+}
+
+.check{
+    position: absolute;
+    top:120px;
+    right: 100px;
+    color: rgb(243, 36, 98);
+}
+
+.fa-bars{
+    font-size: 36px !important;
+}
+
+.fa-heart{
+  color: rgb(248, 26, 93);
+}
+
+
+.fa-clock{
+  color: rgb(0, 102, 255);
+}
+
+@media (max-width:1024px){
+    .logo a,.dropbtn {
+        font-size: 24px;
+    }
+
+    .contian {
+        padding: 1.2em 4em;
+        width: 100%;
+    }
+
+    .check{
+        top:120px;
+        right: 70px;
+    }
+
+    .box{
+      background-color: rgb(224, 224, 224);
+      box-shadow: 3px 3px 10px 0px grey;
+      width: 80%;
+      margin-bottom: 50px;
+      padding: 1.2em 2.4em;
+      border-radius: 10px;
+    }
+    
+    .box h2 {
+      font-size: 54px;
+      font-weight: 500;
+      color: rgb(255, 19, 117);
+    }
+    
+    .box p{
+      font-size: 28px;
+    }
+    
+    .box form{
+      padding: 1.2em 2.4em;
+    }
+    
+    .box input ,textarea{
+      font-size: 28px;
+      font-family: "thaisans";
+      width: 100%;
+      outline: none;
+      padding: 10px 5px;
+      margin: 20px 0;
+      border-radius: 5px;
+      border: 2px solid rgb(177, 177, 177);
+    }
+    
+    .box button {
+      font-size: 28px;
+      margin: 20px 0;
+      border-radius: 5px;
+      font-weight: 500;
+      padding: 0.2em;
+      width: 200px;
+    }
+
+}
+
+@media (max-width:768px){
+  .box{
+    background-color: rgb(224, 224, 224);
+    box-shadow: 3px 3px 10px 0px grey;
+    width: 90%;
+    margin-bottom: 50px;
+    padding: 1.2em 1.8em;
+    border-radius: 10px;
+  }
+  
+  .box h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: rgb(255, 19, 117);
+  }
+  
+  .box p{
+    font-size: 24px;
+  }
+  
+  .box form{
+    padding: 1.2em;
+  }
+  
+  .box input,textarea{
+    font-size: 24px;
+    font-family: "thaisans";
+    width: 100%;
+    outline: none;
+    padding: 5px;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: 2px solid rgb(177, 177, 177);
+  }
+  
+  .box button {
+    font-size: 24px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 0.2em;
+    width: 25%;
+  }
+  
+  .box button:hover {
+    background-color: rgb(236, 12, 105);
+    color: rgb(199, 199, 199);
+    transition: 0.2s;
+  }
+  
+  .box button:active {
+    background-color: rgb(206, 10, 92);
+    color: rgb(199, 199, 199);
+    transition: 0.2s;
+  }
+  
+
+}
+
+@media (max-width:425px){
+    .logo a,.dropbtn {
+        font-size: 24px;
+    }
+    .contian {
+        padding: 0.8em;
+        width: 100%;
+    }
+
+    .contianer h1 {
+        font-size: 72px;
+    }
+  .dropdown-profile {
+    top: 60px;
+  }
+
+  .contianer .card a {
+    font-size: 36px;
+  }
+
+  .contianer .card p {
+    font-size: 28px;
+  }
+
+  .check{
+    top:120px;
+    right: 50px;
+  }
+  
+  .box{
+    background-color: rgb(224, 224, 224);
+    box-shadow: 3px 3px 10px 0px grey;
+    width: 90%;
+    margin-bottom: 50px;
+    padding: 1.2em;
+    border-radius: 10px;
+  }
+  
+  .box h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: rgb(255, 19, 117);
+  }
+  
+  .box p{
+    font-size: 18px;
+  }
+  
+  .box form{
+    padding: 1.2em;
+  }
+  
+  .box input,textarea{
+    font-size: 18px;
+    font-family: "thaisans";
+    width: 100%;
+    outline: none;
+    padding: 5px;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: 2px solid rgb(177, 177, 177);
+  }
+  
+  
+  .box button {
+    font-size: 18px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 0.2em;
+    width: 25%;
+  }
+  
+}
+

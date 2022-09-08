@@ -1,0 +1,421 @@
+@font-face {
+    font-family: "thaisans";
+    src: url('./font/thaisanslite_r1.ttf');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: "thaisans"; */
+    font-family: 'Prompt', sans-serif;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+  }
+
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #00000015;
+    border-radius: 10px;
+    margin: 82px 0 50px;
+}
+  /* Handle */
+body::-webkit-scrollbar-thumb {
+    background: rgb(53, 53, 53); 
+    border-radius: 10px;
+    margin: 10px;
+  }
+  
+  /* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+    background: #202020; 
+}
+
+.contianer{
+    height: 90vh ;
+}
+
+.contianer h1 {
+    font-size: 4rem;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.contianer h1 {
+  font-weight: bold;
+  background: linear-gradient( 45deg, #542a71, #d43d8a, #597497, #f57371, #355854);
+  background-size: 40%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
+  
+.logo {
+  background-image: url('../img/icon.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.contian{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1.2em 3em;
+    width: 100%;
+    
+}
+
+.box{
+  background-color: whitesmoke;
+  box-shadow: 3px 3px 10px 0px grey;
+  width: 70%;
+  margin-bottom: 50px;
+  padding: 0.5em 2em;
+  border-radius: 10px;
+}
+
+.box h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  color: rgb(255, 19, 117);
+}
+
+.box p{
+  font-size: 1.2rem;
+}
+
+.box form{
+  padding: 1em 2em;
+}
+
+/* .box form input .user {
+  color: #eee !important;
+} */
+
+.box form input{
+  font-size: 1rem;
+  font-family:'Prompt', sans-serif;;
+  width: 100%;
+  outline: none;
+  padding: 10px 10px;
+  /* margin: 20px 0; */
+  margin-bottom: 0.8rem;
+  border-radius: 5px;
+  border: 1px solid rgb(177, 177, 177);
+  
+}
+
+.box form input:focus{
+  border: 1px solid rgb(255, 28, 122);
+  color: rgb(255, 28, 122);
+}
+
+.box form button {
+  float: right;
+  font-size: 1.5rem;
+  display: block;
+  margin: 10px 0;
+  background-color: rgb(255, 28, 122);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: 300;
+  padding: 0.2em;
+  width: 9rem;
+  cursor: pointer;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;    
+}
+
+.box form button:hover {
+  background-color: rgb(236, 12, 105);
+  color: rgb(199, 199, 199);
+  transition: 0.2s;
+}
+
+.box form button:active {
+  background-color: rgb(206, 10, 92);
+  color: rgb(199, 199, 199);
+  transition: 0.2s;
+}
+
+#checkbtn{
+    display: none;
+}
+
+.check{
+    position: absolute;
+    top:120px;
+    right: 100px;
+    color: rgb(243, 36, 98);
+}
+
+.fa-bars{
+    font-size: 36px !important;
+}
+
+@media (max-width:1024px){
+    .logo a,.dropbtn {
+        font-size: 24px;
+    }
+
+    .contian {
+        /* padding: 1.2em 4em; */
+        padding: 0 3.5rem;
+        width: 100%;
+    }
+
+    .check{
+        top:120px;
+        right: 70px;
+    }
+
+    .box{
+      background-color: whitesmoke;
+      box-shadow: 3px 3px 10px 0px rgb(177, 177, 177);
+      width: 100%;
+      margin-bottom: 2rem;
+      /* padding: 1.2em 2.4em; */
+      border-radius: 10px;
+    }
+    
+    .box h2 {
+      font-size: 2rem;
+      font-weight: 400;
+      color: rgb(255, 19, 117);
+    }
+    
+    .box p{
+      font-size: 1.5rem;
+    }
+    
+    .box form{
+      padding: 1em 2.4em;
+      /* padding: 0; */
+    }
+    
+    .box form input{
+      font-size: 1.5rem;
+      font-family: 'Prompt', sans-serif;
+      width: 100%;
+      outline: none;
+      padding: 10px 10px;
+      /* margin: 20px 0; */
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: 1px solid rgb(177, 177, 177);
+    }
+    
+    .box form input:focus{
+      border: 1px solid rgb(250, 75, 192);
+    }
+    
+    .box form button {
+      font-size: 1.5rem;
+      /* margin: 20px 0; */
+      border-radius: 5px;
+      font-weight: 400;
+      padding: 0.2em;
+      width: 9rem;
+    }
+    
+    .box form button:hover {
+      background-color: rgb(236, 12, 105);
+      color: rgb(199, 199, 199);
+      transition: 0.2s;
+    }
+    
+    .box form button:active {
+      background-color: rgb(206, 10, 92);
+      color: rgb(199, 199, 199);
+      transition: 0.2s;
+    }
+    
+
+}
+
+@media (max-width:768px){
+    .logo a,.dropbtn {
+        font-size: 24px;
+    }
+    .contian {
+        padding: 1.2em 4em;
+        width: 100%;
+    }
+
+    .contianer h1 {
+        font-size: 72px;
+    }
+
+  .dropdown-profile {
+    top: 60px;
+  }
+
+  .box{
+    background-color: whitesmoke;
+    box-shadow: 3px 3px 15px 0px rgb(177, 177, 177);
+    width: 100%;
+    /* margin-bottom: 50px; */
+    margin-bottom: 2rem;
+    padding: 1.2em 1.8em;
+    border-radius: 10px;
+  }
+  
+  .box h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    color: rgb(255, 19, 117);
+  }
+  
+  .box p{
+    font-size: 1.5rem;
+  }
+  
+  .box form{
+    padding: 1.2em;
+  }
+  
+  .box form input{
+    font-size: 24px;
+    font-family: 'Prompt', sans-serif;
+    width: 100%;
+    outline: none;
+    padding: 5px;
+    /* margin: 20px 0; */
+    border-radius: 5px;
+    border: 1px solid rgb(177, 177, 177);
+  }
+  
+  .box form input:focus{
+    border: 1px solid rgb(250, 75, 192);
+  }
+  
+  .box form button {
+    font-size: 1.5rem;
+    /* margin: 20px 0; */
+    margin: 0;
+    border-radius: 5px;
+    font-weight: 400;
+    padding: 0.2em;
+    width: 9rem;
+  }
+  
+  .box form button:hover {
+    background-color: rgb(236, 12, 105);
+    color: rgb(199, 199, 199);
+    transition: 0.2s;
+  }
+  
+  .box form button:active {
+    background-color: rgb(206, 10, 92);
+    color: rgb(199, 199, 199);
+    transition: 0.2s;
+  }
+  
+
+}
+
+@media (max-width:600px){
+    .logo a,.dropbtn {
+        font-size: 24px;
+    }
+    .contian {
+        /* padding: 0.8em; */
+        width: 100%;
+        padding: 0;
+    }
+
+    .contianer h1 {
+        font-size: 2rem;
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+  .dropdown-profile {
+    top: 60px;
+  }
+
+  .contianer .card a {
+    font-size: 2rem;
+  }
+
+  .contianer .card p {
+    font-size: 1.5rem;
+  }
+
+  .check{
+    top:120px;
+    right: 50px;
+  }
+  
+  .box{
+    background-color: whitesmoke;
+    box-shadow: 3px 3px 15px 0px rgb(177, 177, 177);
+    width: 90%;
+    /* margin-bottom: 50px; */
+    margin-bottom: 1rem;
+    padding: 1.2em;
+    border-radius: 10px;
+  }
+  
+  .box h2 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: rgb(255, 19, 117);
+  }
+  
+  .box p{
+    font-size: 1.1rem;
+  }
+  
+  .box form{
+    padding: 0.5em;
+  }
+  
+  .box form input{
+    font-size: 1.1rem;
+    font-family: 'Prompt', sans-serif;
+    width: 100%;
+    outline: none;
+    padding: 5px;
+    /* margin: 20px 0; */
+    border-radius: 5px;
+    border: 1px solid rgb(177, 177, 177);
+  }
+  
+  .box form input:focus{
+    border: 1px solid rgb(250, 75, 192);
+  }
+  
+  .box form button {
+    font-size: 1.1rem;
+    /* margin: 20px 0; */
+    border-radius: 5px;
+    font-weight: 400;
+    padding: 0.2em;
+    width: 5rem;
+  }
+  
+  .box form button:hover {
+    background-color: rgb(236, 12, 105);
+    color: rgb(199, 199, 199);
+    transition: 0.2s;
+  }
+  
+  .box form button:active {
+    background-color: rgb(206, 10, 92);
+    color: rgb(199, 199, 199);
+    transition: 0.2s;
+  }
+  
+
+}
+

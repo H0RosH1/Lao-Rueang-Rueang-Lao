@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เล่าเรื่อง เรื่องเหล้า</title>
+    <link rel="stylesheet" href="../css/contant.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="../img/icon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../img/icon.png">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="./main.html">
+                <div class="logo"></div>
+            </a>
+
+            <div class="menus-1">
+                <div>
+                    <ul>
+                        <li><a href="./main.html">หน้าแรก</a></li>
+                        <li><a href="./like.html">เรื่องที่ชอบ</a></li>
+                        <li><a href="./read.html">อ่านแล้ว</a></li>
+                        <li><a href="./mystory.html">เรื่องเล่าของฉัน</a></li>
+                        <li><a href="./contant.html">เล่าเรื่อง</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li id="profile"><a href="#">โปรไฟล์</a>
+                            <!-- dropdown-profile -->
+                            <div id="dropdown-profile">
+                                <div id="dropdown">
+                                    <ul>
+                                        <li><a href="./edit.html">แก้ไขข้อมูล</a></li>
+                                        <li><a href="#" id="logout">ออกจากระบบ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="menus-2">
+                <span id="hamburger"><i class="fas fa-bars"></i></span>
+                <div id="dropdown-menus">
+                    <ul>
+                        <li><a href="./main.html">หน้าแรก</a></li>
+                        <li><a href="./like.html">เรื่องที่ชอบ</a></li>
+                        <li><a href="./read.html">อ่านแล้ว</a></li>
+                        <li><a href="./mystory.html">เรื่องเล่าของฉัน</a></li>
+                        <li><a href="./contant.html">เล่าเรื่อง</a></li>
+                        <li><a href="./edit.html">แก้ไขข้อมูล</a></li>
+                        <li><a href="#" id="logout2">ออกจากระบบ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+
+    </header>
+    <div class="contianer">
+        <h1>อ่านเรื่องเหล้า</h1>
+
+        <form id="form" action="#" method="post" class="contian">
+            <div class="box">
+                <p class="titleF">ชื่อเรื่อง</p>
+                <input type="text" name="title" id="title" readonly>
+            </div>
+            <div class="box">
+                <p class="titleF">เนื้อหา</p>
+                <textarea name="contant" id="content" cols="25" rows="10" readonly></textarea>
+            </div>
+
+            <div class="box">
+                <p class="titleF">นามปากกา</p>
+                <input type="text" name="penname" id="penname" readonly>
+            </div>
+
+            <div class="box box2">
+                <p onclick="like()"><i class="fas fa-heart"></i> <span id="like"></span></p>
+                <p><i class="far fa-clock"></i> <span id="date"></span></p>
+            </div>
+        </form>
+
+    </div>
+    <!-- js -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-database.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+    <script src="../js/configfirebase.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/nav.js"></script>
+
+    <script>
+        let checklike = true;
+        function like() {
+            let key = sessionStorage.getItem("reading");
+            let n = true;
+            if (checklike) {
+                checklike = false;
+                firebase
+                    .database()
+                    .ref('like/' + sessionStorage.getItem("username") + '/' + key)
+                    .on('value', (snapshot) => {
+                        const check = snapshot.val();
+                        if (n) {
+
+                            n = false;
+
+                            if (check != null) {
+                                firebase.database().ref('like/' + sessionStorage.getItem("username") + '/' + key).remove();
+                                $('#like').html('กดไลค์');
+                            } else {
+                                firebase.database().ref('like/' + sessionStorage.getItem("username") + '/' + key).set(key);
+                                $('#like').html('ไลค์แล้ว');
+                            }
+                            checklike = true;
+                        }
+                    });
+            }
+
+        }
+        $(document).ready(function () {
+            let key = sessionStorage.getItem("reading");
+            if (key != null) {
+                firebase
+                    .database()
+                    .ref('story/' + key)
+                    .on('value', (snapshot) => {
+                        const storydata = snapshot.val();
+                        if (storydata != null) {
+                            let like = '';
+                            firebase
+                                .database()
+                                .ref('like/' + sessionStorage.getItem("username") + '/' + key)
+                                .on('value', (snapshot) => {
+                                    const check = snapshot.val();
+                                    if (check != null) {
+                                        like = 'ไลค์แล้ว';
+                                    } else {
+                                        like = 'กดไลค์';
+                                    }
+                                    $('#like').html(like);
+                                    $('#title').val(storydata.title);
+                                    $('#content').val(storydata.content);
+                                    $('#penname').val(storydata.penname);
+                                    $('#date').html(storydata.date)
+                                });
+                            firebase.database().ref('read/' + sessionStorage.getItem("username") + '/' + key).set(key)
+                        }
+                    });
+            } else {
+                window.location.assign('./main.html');
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/index.css">
+    <title>เล่าเรื่อง เรื่องเหล้า</title>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="logo"></div>
+        <div class="login">
+            <a href="../index.html">เข้าสู่ระบบ</a>
+            <span>|</span>
+            <a href="./register.html" class="focuspags">ลงทะเบียน</a>
+        </div>
+    </header>
+    <div class="contianer">
+        <div class="title">
+            <div class="in_title">
+                เล่าเรื่อง <br>
+                <span>เรื่องเหล้า</span>
+            </div>
+            <div class="in_titleM">
+                เล่าเรื่อง<br>
+                <span>เรื่องเหล้า</span>
+            </div>
+        </div>
+        <div class="sign_in">
+            <form id="form" action="#" method="post">
+                <h1>ลงทะเบียน</h1>
+                <p>ชื่อผู้ใช้</p>
+                <input type="text" name="username" id="username">
+                <p>รหัสผ่าน</p>
+                <input type="password" name="pwd" id="pwd">
+                <p>ยืนยันรหัสผ่าน</p>
+                <input type="password" name="pwd_submit" id="pwd_submit">
+                <button id="submit" type="submit">เริ่มเล่า</button>
+            </form>
+        </div>
+    </div>
+    <!-- js -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-database.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>
+    <script src="../js/configfirebase.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script>
+        let ok = false;
+        $(document).ready(function () {
+            $('#form').submit(function () {
+                if (ok) {
+                    let username = $('#username').val();
+                    let pwd = $('#pwd').val();
+                    let pwd_submit = $('#pwd_submit').val();
+                    if (pwd == pwd_submit && pwd != "") {
+                        if (pwd.length >= 6) {
+                            pwd = atob(pwd)
+                            let data = {
+                                username: username,
+                                password: pwd,
+                                penname: ''
+                            }
+                            let firebaseRef = firebase.database().ref('user/' + username);
+                            firebaseRef.set(data).then(function () {
+                                alert('การสมัครสำเร็จเรียบร้อย')
+                                window.location.assign('../index.html');
+                            }).catch(function () {
+                                alert('การสมัครไม่สำเร็จ กรุณาลองใหม่อีกครั้ง')
+                            })
+                        } else {
+                            alert('รหัสผ่านต้องมีความยาวอย่างน้อย 6 อักษร')
+                        }
+
+
+                    } else {
+                        alert('ข้อมูลไม่ถูกต้อง กรุณาตรวจสอบใหม่อีกครั้ง');
+                    }
+                } else {
+                    alert('กรุณาตรวจสอบความถูกต้องใหม่อีกครั้ง')
+                }
+                return false;
+            });
+
+            $('#username').change(function () {
+                let username = $('#username').val();
+                if (username != "") {
+                    if (username.length >= 3) {
+                        let firebaseRef = firebase.database().ref('user/' + username);
+                        firebaseRef.once('value').then(function (databaseSnapshot) {
+                            if (databaseSnapshot.val() != null) {
+                                alert('ชื่อผู้ใช้ดังกล่าวถูกใช้งานแล้ว')
+                                ok = false;
+                                $('#username').css('border', '2px solid red')
+                            } else {
+                                ok = true;
+                                $('#username').css('border', '2px solid lightgreen')
+                            }
+                        })
+                    } else {
+                        ok = false;
+                        alert('ชื่อผู้ใช้ต้องมีความยาวอย่างน้อย 3 อักษร')
+                    }
+
+                } else {
+                    ok = false;
+                    $('#username').css('border', 'none')
+                }
+
+
+            })
+        })
+
+    </script>
+    <!-- //// -->
+</body>
+
+</html>
